@@ -81,5 +81,7 @@ ENV HERMES_HOME=/opt/data
 ENV PATH="/opt/data/.local/bin:${PATH}"
 # NOTA: Eliminamos VOLUME porque Railway no lo soporta
 # VOLUME [ "/opt/data" ]
+# Force rebuild when entrypoint changes
+ARG ENTRYPOINT_VERSION=2
 COPY --chmod=0755 docker/entrypoint-railway.sh /opt/hermes/docker/entrypoint-railway.sh
 ENTRYPOINT [ "/usr/bin/tini", "-g", "--", "/opt/hermes/docker/entrypoint-railway.sh" ]
