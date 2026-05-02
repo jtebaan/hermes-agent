@@ -58,11 +58,23 @@ fi
 # Configure Kimi as default provider if KIMI_API_KEY is set
 if [ -n "$KIMI_API_KEY" ]; then
     echo "Configuring Kimi as default provider..."
+    
+    # Detectar si es Kimi Code o Moonshot legacy
+    if [[ "$KIMI_API_KEY" == sk-kimi-* ]]; then
+        KIMI_BASE_URL="https://api.kimi.com/coding/v1"
+        echo "✅ Detected Kimi Code API key"
+    else
+        KIMI_BASE_URL="https://api.moonshot.ai/v1"
+        echo "✅ Detected Moonshot legacy API key"
+    fi
+    
     python3 -c "
 import yaml
 import os
 
 config_path = '/opt/data/config.yaml'
+base_url = os.environ.get('KIMI_BASE_URL', 'https://api.kimi.com/coding/v1')
+
 try:
     with open(config_path, 'r') as f:
         config = yaml.safe_load(f) or {}
@@ -72,7 +84,7 @@ try:
     
     config['model']['default'] = 'kimi-k2.5'
     config['model']['provider'] = 'kimi-coding'
-    config['model']['base_url'] = 'https://api.kimi.com/coding/v1'
+    config['model']['base_url'] = base_url
     
     # Configurar modelo auxiliar para compresión y títulos
     if 'auxiliary' not in config:
@@ -83,7 +95,7 @@ try:
     with open(config_path, 'w') as f:
         yaml.dump(config, f, default_flow_style=False)
     
-    print('✅ Kimi configured as default provider')
+    print(f'✅ Kimi configured with base URL: {base_url}')
 except Exception as e:
     print(f'Warning: Could not update config.yaml: {e}')
 "
