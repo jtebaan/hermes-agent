@@ -79,5 +79,7 @@ RUN uv venv && \
 ENV HERMES_WEB_DIST=/opt/hermes/hermes_cli/web_dist
 ENV HERMES_HOME=/opt/data
 ENV PATH="/opt/data/.local/bin:${PATH}"
-VOLUME [ "/opt/data" ]
-ENTRYPOINT [ "/usr/bin/tini", "-g", "--", "/opt/hermes/docker/entrypoint.sh" ]
+# NOTA: Eliminamos VOLUME porque Railway no lo soporta
+# VOLUME [ "/opt/data" ]
+COPY --chmod=0755 docker/entrypoint-railway.sh /opt/hermes/docker/entrypoint-railway.sh
+ENTRYPOINT [ "/usr/bin/tini", "-g", "--", "/opt/hermes/docker/entrypoint-railway.sh" ]
