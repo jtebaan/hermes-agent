@@ -62,7 +62,7 @@ if [ -n "$KIMI_API_KEY" ]; then
 import yaml
 import os
 
-config_path = os.path.expanduser('~/.hermes/config.yaml')
+config_path = '/opt/data/config.yaml'
 try:
     with open(config_path, 'r') as f:
         config = yaml.safe_load(f) or {}
