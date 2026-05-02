@@ -138,9 +138,10 @@ echo ""
 # Check if API_SERVER_KEY is set for secure mode
 if [ -n "$API_SERVER_KEY" ]; then
     echo "🔒 Dashboard running in SECURE mode (API key required)"
-    echo "   Access via: railway ssh + tunnel to port $DASHBOARD_PORT"
-    # Bind to 127.0.0.1 only - requires SSH tunnel for access
-    hermes dashboard --host 127.0.0.1 --port "$DASHBOARD_PORT" --no-open &
+    echo "   URL: https://${RAILWAY_PUBLIC_DOMAIN:-your-domain.railway.app}"
+    echo "   Header: Authorization: Bearer $API_SERVER_KEY"
+    # Bind to 0.0.0.0 but with API key auth (handled by Hermes web_server)
+    hermes dashboard --host 0.0.0.0 --port "$DASHBOARD_PORT" --no-open &
 else
     echo "⚠️  WARNING: No API_SERVER_KEY set. Dashboard will be inaccessible."
     echo "    Set API_SERVER_KEY in Railway variables to enable dashboard access."
