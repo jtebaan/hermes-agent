@@ -134,15 +134,32 @@ echo ""
 echo "🌐 Starting Dashboard (Web UI)..."
 echo "Dashboard will be available at: http://0.0.0.0:$DASHBOARD_PORT"
 echo ""
-hermes dashboard --host 0.0.0.0 --port "$DASHBOARD_PORT" --no-open --insecure &
-DASHBOARD_PID=$!
-echo "Dashboard PID: $DASHBOARD_PID"
+
+# Check if API_SERVER_KEY is set for secure mode
+if [ -n "$API_SERVER_KEY" ]; then
+    echo "🔒 Dashboard running in SECURE mode (API key required)"
+    hermes dashboard --host 0.0.0.0 --port "$DASHBOARD_PORT" --no-open &
+else
+    echo "⚠️  WARNING: No API_SERVER_KEY set. Dashboard will be inaccessible."
+    echo "    Set API_SERVER_KEY in Railway variables to enable dashboard access."
+    # Don't start dashboard without auth
+    DASHBOARD_PID=""
+fi
+
+if [ -n "$DASHBOARD_PID" ] || [ -z "$API_SERVER_KEY" ]; then
+    DASHBOARD_PID=$!
+    echo "Dashboard PID: $DASHBOARD_PID"
+fi
 
 echo ""
 echo "========================================="
-echo "✅ Both services are running!"
+echo "✅ Services running!"
 echo "📱 Gateway: Telegram, Discord, etc."
-echo "🌐 Dashboard: http://your-domain:$DASHBOARD_PORT"
+if [ -n "$API_SERVER_KEY" ]; then
+    echo "🌐 Dashboard: https://your-domain.railway.app (requires API key)"
+else
+    echo "🌐 Dashboard: DISABLED (set API_SERVER_KEY to enable)"
+fi
 echo "========================================="
 echo ""
 
