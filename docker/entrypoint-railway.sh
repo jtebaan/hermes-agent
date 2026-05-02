@@ -80,12 +80,15 @@ echo "Gateway PID: $GATEWAY_PID"
 # Wait a moment for gateway to initialize
 sleep 5
 
+# Use Railway's PORT variable or default to 3000
+DASHBOARD_PORT="${PORT:-3000}"
+
 # Start Dashboard in foreground (this keeps the container running)
 echo ""
 echo "🌐 Starting Dashboard (Web UI)..."
-echo "Dashboard will be available at: http://0.0.0.0:9119"
+echo "Dashboard will be available at: http://0.0.0.0:$DASHBOARD_PORT"
 echo ""
-hermes dashboard --host 0.0.0.0 --no-open --insecure &
+hermes dashboard --host 0.0.0.0 --port "$DASHBOARD_PORT" --no-open --insecure &
 DASHBOARD_PID=$!
 echo "Dashboard PID: $DASHBOARD_PID"
 
@@ -93,7 +96,7 @@ echo ""
 echo "========================================="
 echo "✅ Both services are running!"
 echo "📱 Gateway: Telegram, Discord, etc."
-echo "🌐 Dashboard: http://your-domain:9119"
+echo "🌐 Dashboard: http://your-domain:$DASHBOARD_PORT"
 echo "========================================="
 echo ""
 
