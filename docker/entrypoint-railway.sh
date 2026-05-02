@@ -126,43 +126,19 @@ echo "Gateway PID: $GATEWAY_PID"
 # Wait a moment for gateway to initialize
 sleep 5
 
-# Use Railway's PORT variable or default to 3000
-DASHBOARD_PORT="${PORT:-3000}"
-
-# Start Dashboard in foreground (this keeps the container running)
+# DASHBOARD COMPLETELY DISABLED FOR SECURITY
+# All functionality available via Gateway (Telegram/Discord)
 echo ""
-echo "🌐 Starting Dashboard (Web UI)..."
-echo "Dashboard will be available at: http://0.0.0.0:$DASHBOARD_PORT"
+echo "🌐 Dashboard (Web UI): DISABLED"
+echo "   Reason: Security - Use Gateway (Telegram) instead"
+echo "   All features available via /help command in Telegram"
 echo ""
-
-# Check if API_SERVER_KEY is set for secure mode
-if [ -n "$API_SERVER_KEY" ]; then
-    echo "🔒 Dashboard running in SECURE mode (API key required)"
-    echo "   URL: https://${RAILWAY_PUBLIC_DOMAIN:-your-domain.railway.app}"
-    echo "   Header: Authorization: Bearer $API_SERVER_KEY"
-    # Bind to 0.0.0.0 but with API key auth (handled by Hermes web_server)
-    hermes dashboard --host 0.0.0.0 --port "$DASHBOARD_PORT" --no-open &
-else
-    echo "⚠️  WARNING: No API_SERVER_KEY set. Dashboard will be inaccessible."
-    echo "    Set API_SERVER_KEY in Railway variables to enable dashboard access."
-    # Don't start dashboard without auth
-    DASHBOARD_PID=""
-fi
-
-if [ -n "$DASHBOARD_PID" ] || [ -z "$API_SERVER_KEY" ]; then
-    DASHBOARD_PID=$!
-    echo "Dashboard PID: $DASHBOARD_PID"
-fi
 
 echo ""
 echo "========================================="
-echo "✅ Services running!"
-echo "📱 Gateway: Telegram, Discord, etc."
-if [ -n "$API_SERVER_KEY" ]; then
-    echo "🌐 Dashboard: https://your-domain.railway.app (requires API key)"
-else
-    echo "🌐 Dashboard: DISABLED (set API_SERVER_KEY to enable)"
-fi
+echo "✅ Gateway running!"
+echo "📱 Telegram: Active and secure"
+echo "🌐 Dashboard: DISABLED (security hardening)"
 echo "========================================="
 echo ""
 
@@ -170,7 +146,6 @@ echo ""
 shutdown_services() {
     echo ""
     echo "Shutting down services..."
-    kill $DASHBOARD_PID 2>/dev/null || true
     kill $GATEWAY_PID 2>/dev/null || true
     wait
     echo "Services stopped."
