@@ -55,6 +55,34 @@ if [ ! -f "$HERMES_HOME/config.yaml" ]; then
     cp "$INSTALL_DIR/cli-config.yaml.example" "$HERMES_HOME/config.yaml"
 fi
 
+# Configure Kimi as default provider if KIMI_API_KEY is set
+if [ -n "$KIMI_API_KEY" ]; then
+    echo "Configuring Kimi as default provider..."
+    python3 -c "
+import yaml
+import os
+
+config_path = os.path.expanduser('~/.hermes/config.yaml')
+try:
+    with open(config_path, 'r') as f:
+        config = yaml.safe_load(f) or {}
+    
+    if 'model' not in config:
+        config['model'] = {}
+    
+    config['model']['default'] = 'kimi/kimi-k2.5'
+    config['model']['provider'] = 'kimi-coding'
+    config['model']['base_url'] = 'https://api.kimi.com/coding/v1'
+    
+    with open(config_path, 'w') as f:
+        yaml.dump(config, f, default_flow_style=False)
+    
+    print('✅ Kimi configured as default provider')
+except Exception as e:
+    print(f'Warning: Could not update config.yaml: {e}')
+"
+fi
+
 # SOUL.md
 if [ ! -f "$HERMES_HOME/SOUL.md" ]; then
     cp "$INSTALL_DIR/docker/SOUL.md" "$HERMES_HOME/SOUL.md"
