@@ -70,9 +70,15 @@ try:
     if 'model' not in config:
         config['model'] = {}
     
-    config['model']['default'] = 'kimi/kimi-k2.5'
+    config['model']['default'] = 'kimi-k2.5'
     config['model']['provider'] = 'kimi-coding'
     config['model']['base_url'] = 'https://api.kimi.com/coding/v1'
+    
+    # Configurar modelo auxiliar para compresión y títulos
+    if 'auxiliary' not in config:
+        config['auxiliary'] = {}
+    config['auxiliary']['provider'] = 'kimi-coding'
+    config['auxiliary']['model'] = 'kimi-k2.5'
     
     with open(config_path, 'w') as f:
         yaml.dump(config, f, default_flow_style=False)
