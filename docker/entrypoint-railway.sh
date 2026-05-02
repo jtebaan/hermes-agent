@@ -85,7 +85,7 @@ echo ""
 echo "🌐 Starting Dashboard (Web UI)..."
 echo "Dashboard will be available at: http://0.0.0.0:9119"
 echo ""
-hermes dashboard --host 0.0.0.0 --no-open &
+hermes dashboard --host 0.0.0.0 --no-open --insecure &
 DASHBOARD_PID=$!
 echo "Dashboard PID: $DASHBOARD_PID"
 
