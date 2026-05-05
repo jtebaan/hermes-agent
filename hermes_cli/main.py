@@ -4024,7 +4024,6 @@ def _model_flow_kimi(config, current_model=""):
         model_list = [
             "kimi-k2.6",
             "kimi-k2.5",
-            "kimi-for-coding",
         ]
     else:
         # Legacy Moonshot models (excludes Coding Plan-only models)

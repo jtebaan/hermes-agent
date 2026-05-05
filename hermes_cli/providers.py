@@ -97,10 +97,6 @@ HERMES_OVERLAYS: Dict[str, HermesOverlay] = {
         extra_env_vars=("GLM_API_KEY", "ZAI_API_KEY", "Z_AI_API_KEY"),
         base_url_env_var="GLM_BASE_URL",
     ),
-    "kimi-for-coding": HermesOverlay(
-        transport="openai_chat",
-        base_url_env_var="KIMI_BASE_URL",
-    ),
     "stepfun": HermesOverlay(
         transport="openai_chat",
         extra_env_vars=("STEPFUN_API_KEY",),
@@ -246,11 +242,11 @@ ALIASES: Dict[str, str] = {
     "build-nvidia": "nvidia",
     "nemotron": "nvidia",
 
-    # kimi-for-coding (models.dev ID)
-    "kimi": "kimi-for-coding",
-    "kimi-coding": "kimi-for-coding",
-    "kimi-coding-cn": "kimi-for-coding",
-    "moonshot": "kimi-for-coding",
+    # kimi-coding
+    "kimi": "kimi-coding",
+    "kimi-coding": "kimi-coding",
+    "kimi-coding-cn": "kimi-coding",
+    "moonshot": "kimi-coding",
 
     # stepfun
     "step": "stepfun",
