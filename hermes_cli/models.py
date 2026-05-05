@@ -262,14 +262,12 @@ _PROVIDER_MODELS: dict[str, list[str]] = {
         "kimi-for-coding",
         "kimi-k2-thinking",
         "kimi-k2-thinking-turbo",
-        "kimi-k2-turbo-preview",
         "kimi-k2-0905-preview",
     ],
     "kimi-coding-cn": [
         "kimi-k2.6",
         "kimi-k2.5",
         "kimi-k2-thinking",
-        "kimi-k2-turbo-preview",
         "kimi-k2-0905-preview",
     ],
     "stepfun": [
@@ -280,7 +278,6 @@ _PROVIDER_MODELS: dict[str, list[str]] = {
         "kimi-k2.6",
         "kimi-k2.5",
         "kimi-k2-thinking",
-        "kimi-k2-turbo-preview",
         "kimi-k2-0905-preview",
     ],
     "minimax": [

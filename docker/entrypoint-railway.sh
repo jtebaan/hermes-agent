@@ -75,16 +75,6 @@ import os
 config_path = '/opt/data/config.yaml'
 base_url = os.environ.get('KIMI_BASE_URL', 'https://api.kimi.com/coding/v1')
 
-# Detectar si es Moonshot legacy para usar modelos correctos
-api_key = os.environ.get('KIMI_API_KEY', '')
-if api_key.startswith('sk-kimi-'):
-    default_model = 'kimi-k2.6'
-    aux_model = 'kimi-k2.6'
-else:
-    # Moonshot legacy API - usar modelos moonshot-v1
-    default_model = 'moonshot-v1-128k'
-    aux_model = 'moonshot-v1-8k'
-
 try:
     with open(config_path, 'r') as f:
         config = yaml.safe_load(f) or {}
@@ -92,7 +82,7 @@ try:
     if 'model' not in config:
         config['model'] = {}
     
-    config['model']['default'] = default_model
+    config['model']['default'] = 'kimi-k2.6'
     config['model']['provider'] = 'kimi-coding'
     config['model']['base_url'] = base_url
     
@@ -100,14 +90,12 @@ try:
     if 'auxiliary' not in config:
         config['auxiliary'] = {}
     config['auxiliary']['provider'] = 'kimi-coding'
-    config['auxiliary']['model'] = aux_model
+    config['auxiliary']['model'] = 'kimi-k2.6'
     
     with open(config_path, 'w') as f:
         yaml.dump(config, f, default_flow_style=False)
     
     print(f'✅ Kimi configured with base URL: {base_url}')
-    print(f'   Model: {default_model}')
-    print(f'   Auxiliary: {aux_model}')
 except Exception as e:
     print(f'Warning: Could not update config.yaml: {e}')
 "
