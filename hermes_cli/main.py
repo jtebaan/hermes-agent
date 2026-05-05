@@ -4025,8 +4025,6 @@ def _model_flow_kimi(config, current_model=""):
             "kimi-k2.6",
             "kimi-k2.5",
             "kimi-for-coding",
-            "kimi-k2-thinking",
-            "kimi-k2-thinking-turbo",
         ]
     else:
         # Legacy Moonshot models (excludes Coding Plan-only models)

@@ -96,14 +96,14 @@ _DEFAULT_PROVIDER_MODELS = {
     ],
     "zai": ["glm-5.1", "glm-5", "glm-4.7", "glm-4.5", "glm-4.5-flash"],
     "kimi-coding": [
-        "kimi-k2.6", "kimi-k2.5", "kimi-k2-thinking",
+        "kimi-k2.6", "kimi-k2.5",
         "moonshot-v1-128k", "moonshot-v1-128k-vision-preview",
         "moonshot-v1-32k", "moonshot-v1-32k-vision-preview",
         "moonshot-v1-8k", "moonshot-v1-8k-vision-preview",
         "moonshot-v1-auto",
     ],
     "kimi-coding-cn": [
-        "kimi-k2.6", "kimi-k2.5", "kimi-k2-thinking",
+        "kimi-k2.6", "kimi-k2.5",
         "moonshot-v1-128k", "moonshot-v1-128k-vision-preview",
         "moonshot-v1-32k", "moonshot-v1-32k-vision-preview",
         "moonshot-v1-8k", "moonshot-v1-8k-vision-preview",
@@ -123,7 +123,7 @@ _DEFAULT_PROVIDER_MODELS = {
         "deepseek-ai/DeepSeek-V3.2", "moonshotai/Kimi-K2.5",
     ],
     "moonshot": [
-        "kimi-k2.6", "kimi-k2.5", "kimi-k2-thinking",
+        "kimi-k2.6", "kimi-k2.5",
         "moonshot-v1-128k", "moonshot-v1-128k-vision-preview",
         "moonshot-v1-32k", "moonshot-v1-32k-vision-preview",
         "moonshot-v1-8k", "moonshot-v1-8k-vision-preview",
