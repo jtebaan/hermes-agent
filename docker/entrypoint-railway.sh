@@ -101,6 +101,14 @@ except Exception as e:
 "
 fi
 
+# Fix empty agent_system_prompt.md (causes JSON parse warnings)
+if [ -f "$HERMES_HOME/agent_system_prompt.md" ]; then
+    if [ ! -s "$HERMES_HOME/agent_system_prompt.md" ]; then
+        echo "[]" > "$HERMES_HOME/agent_system_prompt.md"
+        echo "Fixed empty agent_system_prompt.md"
+    fi
+fi
+
 # SOUL.md
 if [ ! -f "$HERMES_HOME/SOUL.md" ]; then
     cp "$INSTALL_DIR/docker/SOUL.md" "$HERMES_HOME/SOUL.md"
