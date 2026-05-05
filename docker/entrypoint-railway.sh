@@ -82,7 +82,7 @@ try:
     if 'model' not in config:
         config['model'] = {}
     
-    config['model']['default'] = 'kimi-k2.5'
+    config['model']['default'] = 'kimi-k2.6'
     config['model']['provider'] = 'kimi-coding'
     config['model']['base_url'] = base_url
     
@@ -90,7 +90,7 @@ try:
     if 'auxiliary' not in config:
         config['auxiliary'] = {}
     config['auxiliary']['provider'] = 'kimi-coding'
-    config['auxiliary']['model'] = 'kimi-k2.5'
+    config['auxiliary']['model'] = 'kimi-k2.6'
     
     with open(config_path, 'w') as f:
         yaml.dump(config, f, default_flow_style=False)
