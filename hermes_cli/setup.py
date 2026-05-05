@@ -95,8 +95,20 @@ _DEFAULT_PROVIDER_MODELS = {
         "gemini-3-flash-preview", "gemini-3.1-flash-lite-preview",
     ],
     "zai": ["glm-5.1", "glm-5", "glm-4.7", "glm-4.5", "glm-4.5-flash"],
-    "kimi-coding": ["kimi-k2.6", "kimi-k2.5", "kimi-k2-thinking"],
-    "kimi-coding-cn": ["kimi-k2.6", "kimi-k2.5", "kimi-k2-thinking"],
+    "kimi-coding": [
+        "kimi-k2.6", "kimi-k2.5", "kimi-k2-thinking",
+        "moonshot-v1-128k", "moonshot-v1-128k-vision-preview",
+        "moonshot-v1-32k", "moonshot-v1-32k-vision-preview",
+        "moonshot-v1-8k", "moonshot-v1-8k-vision-preview",
+        "moonshot-v1-auto",
+    ],
+    "kimi-coding-cn": [
+        "kimi-k2.6", "kimi-k2.5", "kimi-k2-thinking",
+        "moonshot-v1-128k", "moonshot-v1-128k-vision-preview",
+        "moonshot-v1-32k", "moonshot-v1-32k-vision-preview",
+        "moonshot-v1-8k", "moonshot-v1-8k-vision-preview",
+        "moonshot-v1-auto",
+    ],
     "stepfun": ["step-3.5-flash", "step-3.5-flash-2603"],
     "arcee": ["trinity-large-thinking", "trinity-large-preview", "trinity-mini"],
     "minimax": ["MiniMax-M2.7", "MiniMax-M2.5", "MiniMax-M2.1", "MiniMax-M2"],
@@ -109,6 +121,13 @@ _DEFAULT_PROVIDER_MODELS = {
         "Qwen/Qwen3.5-397B-A17B", "Qwen/Qwen3-235B-A22B-Thinking-2507",
         "Qwen/Qwen3-Coder-480B-A35B-Instruct", "deepseek-ai/DeepSeek-R1-0528",
         "deepseek-ai/DeepSeek-V3.2", "moonshotai/Kimi-K2.5",
+    ],
+    "moonshot": [
+        "kimi-k2.6", "kimi-k2.5", "kimi-k2-thinking",
+        "moonshot-v1-128k", "moonshot-v1-128k-vision-preview",
+        "moonshot-v1-32k", "moonshot-v1-32k-vision-preview",
+        "moonshot-v1-8k", "moonshot-v1-8k-vision-preview",
+        "moonshot-v1-auto",
     ],
 }
 
